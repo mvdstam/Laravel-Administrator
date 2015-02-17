@@ -241,15 +241,16 @@ class Column {
 	 * Takes a column output string and renders the column with it (replacing '(:value)' with the column's field value)
 	 *
 	 * @param string	$value
+	 * @param Eloquent $item Item that is being processed
 	 *
 	 * @return string
 	 */
-	public function renderOutput($value)
+	public function renderOutput($value, $item)
 	{
 		$output = $this->getOption('output');
 		
 		if (is_callable($output)) {
-			return $output($value);
+			return $output($value, $item);
 		}
 		
 		return str_replace('(:value)', $value, $output);
