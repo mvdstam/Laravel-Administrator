@@ -398,6 +398,24 @@ class Factory {
 		return $this->editFields;
 	}
 
+	public function getTabbedEditFields($loadRelationships = true, $override = false) {
+
+		$tabbedEditFields = [];
+		foreach($this->getEditFields($loadRelationships, $override) as $editFieldObject) {
+			if (!($tab = $editFieldObject->getOption('tab'))) {
+				$tab = 'main';
+			}
+
+			if (!array_key_exists($tab, $tabbedEditFields)) {
+				$tabbedEditFields[$tab] = ['tab' => $tab, 'editFields' => []];
+			}
+
+			$tabbedEditFields[$tab]['editFields'][] = $editFieldObject;
+		}
+
+		return $tabbedEditFields;
+	}
+
 	/**
 	 * Gets the array version of the edit fields objects
 	 *

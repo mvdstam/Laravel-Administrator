@@ -11,7 +11,16 @@
 		<!-- /ko -->
 	<!-- /ko -->
 
-	<!-- ko foreach: editFields -->
+	<div class="edit-tabs">
+  	<ul>
+		<!-- ko foreach: editFields -->
+    	<li><a data-bind="text: tab, href: '#' + tab"></a></li>
+		<!-- /ko -->
+		</ul>
+
+		<!-- ko foreach: editFields -->
+		<div data-bind="id: tab">
+			<!-- ko foreach: editFields -->
 		<!-- ko if: $data && ( $root[$root.primaryKey]() || editable ) && visible -->
 			<div data-bind="attr: {class: type}">
 				<label data-bind="attr: {for: field_id}, text: title + ':'"></label>
@@ -261,6 +270,9 @@
 			</div>
 		<!-- /ko -->
 	<!-- /ko -->
+		</div>
+		<!-- /ko -->
+	</div>
 
 	<!-- ko if: $root[$root.primaryKey]() && actions().length -->
 		<div class="custom_buttons">

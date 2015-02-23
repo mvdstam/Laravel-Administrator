@@ -22,7 +22,7 @@ View::composer('administrator::index', function($view)
 	$view->config = $config;
 	$view->dataTable = $dataTable;
 	$view->primaryKey = $model->getKeyName();
-	$view->editFields = $fieldFactory->getEditFields();
+	$view->editFields = $fieldFactory->getTabbedEditFields();
 	$view->arrayFields = $fieldFactory->getEditFieldsArrays();
 	$view->dataModel = $fieldFactory->getDataModel();
 	$view->columnModel = $columnFactory->getColumnOptions();
